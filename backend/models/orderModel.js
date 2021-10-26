@@ -31,38 +31,48 @@ const orderSchema = mongoose.Schema(
     required: true
   },
   paymentResult: {
-    type: String,
-    required: true
+    id: { type: String },
+    status: { type: String },
+    update_time: { type: String },
+    email_address: { type: String }
   },
-  description: {
-    type: String,
-    required: true
-  },
-  reviews: [reviewSchema],
-  rating: {
+  taxPrice: {
     type: Number,
     required: true,
-    default: 0
+    default: 0.0
   },
-  numReviews: {
+  shippingPrice: {
     type: Number,
     required: true,
-    default: 0
+    default: 0.0
   },
-  price: {
+  totalPrice: {
     type: Number,
     required: true,
-    default: 0
+    default: 0.0
   },
-  countInStock: {
-    type: Number,
+  isPaid: {
+    type: Boolean,
     required: true,
-    default: 0
+    default: false
   },
-  }, {
+  paidAt: {
+    type: Date,
+  },
+  isDelivered: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  deliveredAt: {
+    type: Date
+  }
+},
+  {
     timestamps: true
-})
+  }
+)
 
-const Product = mongoose.model('Product', productSchema)
+const Order = mongoose.model('Order', orderSchema)
 
-export default Product
+export default Order
